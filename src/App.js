@@ -9,6 +9,11 @@ function App() {
   const [like, setLike] = useState(false)
   const [liking, setliking] = useState(false)
   useEffect(() => {
+    const local = localStorage.getItem('like')
+    if (local) {
+      local === 'true' && setLike(true)
+      local === 'false' && setLike(false)
+    }
     const fetchImage = async () => {
       setLoading(true)
       try {
@@ -26,14 +31,18 @@ function App() {
     }, 1000);
 
   }, [])
+
+
+
   const handleLike = () => {
     setliking(true)
     setLike(!like)
+    localStorage.setItem('like', !like)
     setTimeout(() => {
       setliking(false)
     }, 500);
   }
-
+  console.log(like, typeof (like))
   return (
     <div className="p-4 md:p-12">
       <h1><span className='text-green-800 font-bold'>
