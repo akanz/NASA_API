@@ -1,38 +1,36 @@
-.App {
-  text-align: center;
-}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+@layer components {
+  h1 {
+    @apply text-center text-4xl my-8;
   }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+  .heart {
+    cursor: pointer;
+    height: 70px;
+    width: 70px;
+    background-image: url("https://abs.twimg.com/a/1446542199/img/t1/web_heart_animation.png");
+    background-position: left;
+    background-repeat: no-repeat;
+    background-size: 2900%;
   }
-  to {
-    transform: rotate(360deg);
+  .heart:hover {
+    background-position: right;
+  }
+  .heart.liked {
+    background-position: right;
+  }
+  .liking {
+    animation: heart-burst 0.8s steps(28) 1;
+  }
+
+  @keyframes heart-burst {
+    from {
+      background-position: left;
+    }
+    to {
+      background-position: right;
+    }
   }
 }
