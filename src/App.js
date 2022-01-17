@@ -12,7 +12,7 @@ function App() {
     const fetchImage = async () => {
       setLoading(true)
       try {
-        const res = await (await axios.get('https://api.nasa.gov/planetary/apod?api_key=0cP308MvQNyb2HRchwQLnxx7IjzGkwEkbb7s7Jju')).data
+        const res = await (await axios.get(`https://api.nasa.gov/planetary/apod?api_key=${process.env.REACT_APP_API_KEY}`)).data
         setImg(res)
         setLoading(false)
       } catch (error) {
@@ -36,7 +36,8 @@ function App() {
 
   return (
     <div className="p-4 md:p-12">
-      <h1><span className='text-green-800 font-bold'> PICTURE </span>OF THE <span className='text-red-800'> DAY</span></h1>
+      <h1><span className='text-green-800 font-bold'>
+        Spacestagram:  </span>Image-sharing from the <span className='text-red-800'> final frontier</span></h1>
       <h2 className='mb-8'><span className='text-blue-800 font-medium'>Discover the cosmos!</span> Each day a different image or photograph of our fascinating universe is featured,
         along with a brief explanation written by a professional astronomer.</h2>
       {loading ? <div className='flex items-center justify-center'>
@@ -54,7 +55,7 @@ function App() {
               <div className='flex justify-end p-3'>
                 <button onClick={handleLike} className={`text-xl flex items-center justify-between`}>
                   <div className={`heart ${like ? 'liked' : ''} ${liking ? 'liking' : ''}`}>
-                   
+
                   </div>
                   <div className={like ? 'Like' : 'Liked'}>{like ? 'Liked' : 'Like'}</div>
                 </button>
